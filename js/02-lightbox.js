@@ -1,8 +1,5 @@
 import { galleryItems } from "./gallery-items.js";
-console.log(galleryItems);
-// Change code below this line
 const gallerySelect = document.querySelector(".gallery");
-console.log(gallerySelect);
 const imagesToAdd = galleryItems
   .map(
     (galleryItem) =>
@@ -10,3 +7,15 @@ const imagesToAdd = galleryItems
   )
   .join("");
 gallerySelect.insertAdjacentHTML("beforeend", imagesToAdd);
+gallerySelect.addEventListener("click", feedbackFunction);
+
+function feedbackFunction(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== "IMG") return;
+}
+var gallery = new SimpleLightbox(".gallery a", {
+  caption: true,
+  captionsData: "alt",
+  captionDelay: 250,
+  captionPosition: "bottom",
+});
