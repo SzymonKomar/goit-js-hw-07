@@ -9,15 +9,18 @@ const imagesToAdd = galleryItems
   .join("");
 gallerySelect.insertAdjacentHTML("beforeend", imagesToAdd);
 document.querySelector(".gallery").onclick = (event) => {
-  event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
+  } else {
+    event.preventDefault();
+    var instance = basicLightbox.create(
+      `<img src="${event.target.dataset.source}" width="1400" height="900"> `
+    );
+    instance.show();
   }
-  var instance = basicLightbox.create(
-    `<img src="${event.target.dataset.source}" width="1400" height="900"> `
-  );
-  instance.show();
-  gallerySelect.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") instance.close();
-  });
+  document.querySelector(".gallery").onkeydown = (event) => {
+    if (event.key === "Escape") {
+      instance.close();
+    }
+  };
 };

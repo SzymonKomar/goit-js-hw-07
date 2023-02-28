@@ -7,12 +7,6 @@ const imagesToAdd = galleryItems
   )
   .join("");
 gallerySelect.insertAdjacentHTML("beforeend", imagesToAdd);
-gallerySelect.addEventListener("click", feedbackFunction);
-
-function feedbackFunction(event) {
-  event.preventDefault();
-  if (event.target.nodeName !== "IMG") return;
-}
 var gallery = new SimpleLightbox(".gallery a", {
   caption: true,
   captionsData: "alt",
